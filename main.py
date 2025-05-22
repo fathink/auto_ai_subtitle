@@ -17,14 +17,14 @@ language_from = "ja"  # 源语言
 language_to = "zh"  # 目标语言
 translate_threads = 10  # 翻译时开启多少线程
 
-video_fpath = f"{BASE_DIR}/{FNAME}"
-audio_fpath = f"{BASE_DIR}/{FNAME.split('.')[0]}.aac"
-srt_fpath = f"{BASE_DIR}/{FNAME.split('.')[0]}.srt"
-srt_translate_fpath = f"{BASE_DIR}/{FNAME.split('.')[0]}_translate.srt"
-out_video_fpath = f"{BASE_DIR}/{FNAME.split('.')[0]}_out.mp4"
-
 
 def main():
+
+    video_fpath = f"{BASE_DIR}/{FNAME}"
+    audio_fpath = f"{BASE_DIR}/{FNAME.split('.')[0]}.aac"
+    srt_fpath = f"{BASE_DIR}/{FNAME.split('.')[0]}.srt"
+    srt_translate_fpath = f"{BASE_DIR}/{FNAME.split('.')[0]}_translate.srt"
+    out_video_fpath = f"{BASE_DIR}/{FNAME.split('.')[0]}_out.mp4"
 
     # step1: 提取视频中的音频文件
     audio_tool.audio_extract(video_fpath,  audio_fpath)
