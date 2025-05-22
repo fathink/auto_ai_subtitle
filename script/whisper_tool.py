@@ -13,12 +13,13 @@ def reformat_time(second):
 
 def write_srt(seg, srt_path):
     with open(srt_path, 'w', encoding='utf-8') as f:
-        write_content = [str(n + 1) + '\n'
-                         + reformat_time(i['start'])
+       
+        write_content = [str(idx + 1) + '\n'
+                         + reformat_time(item['start'])
                          + ' --> '
-                         + reformat_time(i['end']) + '\n'
-                         + i['text'] + '\n\n'
-                         for n, i in enumerate(seg)]
+                         + reformat_time(item['end']) + '\n'
+                         + item['text'] + '\n\n'
+                         for idx, item in enumerate(seg)]
         f.writelines(write_content)
 
 
@@ -60,14 +61,24 @@ def load_model_bin(model_path, device):
     return whisper_model
 
 
-def do_whisper(audio, srt_path, language, hf_model_path, device):
+def do_whisper(audio_fpath, srt_path, language, model="base", hf_model_path="", device="cpu"):
+    """
+    Args:
+        audio_fpath: str, 音频地址
+        srt_path: str, 输出srt文件地址
+        model: str, 可选: tiny, base, small, medium, large, turbo
+        language: str, 指定源音频的语言， en:英语，zh:中文，ja:日语，ko:韩语
+        hf_model_path: str, Hugging Face模型地址
+        device: str, 设备选择，cpu或cuda
+    """
     if hf_model_path == "":
-        model = whisper.load_model("base")
+        model = whisper.load_model("medium")  # 可选: tiny, base, small, medium, large，turbo
     else:
         model = load_model_bin(hf_model_path, device)
     print("whisper working...")
-    result = model.transcribe(audio, language=language)
+    result = model.transcribe(audio_fpath, language=language)
     print("whisper execute success")
+
     print("writing srt file...")
     write_srt(result['segments'], srt_path)
     print("write srt success")
