@@ -3,14 +3,8 @@ import yaml
 import subprocess
 from script import translate_tool, audio_tool, whisper_tool
 
-
-# BASE_DIR = "/Users/fazuo/video"
-BASE_DIR = "data"
-# FNAME = "xgplayer-demo-360p.mp4"
-FNAME = "NHK_news_ja.mp4"
-
-
-whisper_model = "base"  # 可选:  base, small, medium, turbo
+# 基础设置
+whisper_model = "small"  # 可选:  base, small, medium, turbo
 
 # 设置视频源语言和目标语言， en:英语，zh:中文，ja:日语，ko:韩语
 language_from = "ja"  # 源语言
@@ -18,13 +12,13 @@ language_to = "zh"  # 目标语言
 translate_threads = 10  # 翻译时开启多少线程
 
 
-def main():
+def single_run(base_dir, fname):
 
-    video_fpath = f"{BASE_DIR}/{FNAME}"
-    audio_fpath = f"{BASE_DIR}/{FNAME.split('.')[0]}.aac"
-    srt_fpath = f"{BASE_DIR}/{FNAME.split('.')[0]}.srt"
-    srt_translate_fpath = f"{BASE_DIR}/{FNAME.split('.')[0]}_translate.srt"
-    out_video_fpath = f"{BASE_DIR}/{FNAME.split('.')[0]}_out.mp4"
+    video_fpath = f"{base_dir}/{fname}"
+    audio_fpath = f"{base_dir}/{fname.split('.')[0]}.aac"
+    srt_fpath = f"{base_dir}/{fname.split('.')[0]}.srt"
+    srt_translate_fpath = f"{base_dir}/{fname.split('.')[0]}_translate.srt"
+    out_video_fpath = f"{base_dir}/{fname.split('.')[0]}_subtitle.mp4"
 
     # step1: 提取视频中的音频文件
     audio_tool.audio_extract(video_fpath,  audio_fpath)
@@ -54,4 +48,6 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    base_dir = "data"
+    fname = "NHK_news_ja.mp4"
+    single_run(base_dir, fname)
