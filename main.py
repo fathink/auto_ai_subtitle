@@ -7,13 +7,13 @@ from script import translate_tool, audio_tool, whisper_tool
 # BASE_DIR = "/Users/fazuo/video"
 BASE_DIR = "data"
 # FNAME = "xgplayer-demo-360p.mp4"
-FNAME = "911Mothers_2010W-480p_en.mp4"
+FNAME = "NHK_news_ja.mp4"
 
 
 whisper_model = "base"  # 可选:  base, small, medium, turbo
 
 # 设置视频源语言和目标语言， en:英语，zh:中文，ja:日语，ko:韩语
-language_from = "en"  # 源语言
+language_from = "ja"  # 源语言
 language_to = "zh"  # 目标语言
 translate_threads = 10  # 翻译时开启多少线程
 
