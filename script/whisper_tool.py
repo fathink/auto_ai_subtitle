@@ -72,7 +72,7 @@ def do_whisper(audio_fpath, srt_path, language, model="base", hf_model_path="", 
         device: str, 设备选择，cpu或cuda
     """
     if hf_model_path == "":
-        model = whisper.load_model("medium")  # 可选: tiny, base, small, medium, large，turbo
+        model = whisper.load_model(model)  # 可选: tiny, base, small, medium, large，turbo
     else:
         model = load_model_bin(hf_model_path, device)
     print("whisper working...")
