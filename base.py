@@ -18,7 +18,7 @@ def single_run(base_dir, fname):
     audio_fpath = f"{base_dir}/{fname.split('.')[0]}.aac"
     srt_fpath = f"{base_dir}/{fname.split('.')[0]}.srt"
     srt_translate_fpath = f"{base_dir}/{fname.split('.')[0]}_translate.srt"
-    out_video_fpath = f"{base_dir}/{fname.split('.')[0]}_subtitle.mp4"
+    out_video_fpath = f"{base_dir}/{fname.split('.')[0]}_{language_to}.mp4"
 
     # step1: 提取视频中的音频文件
     audio_tool.audio_extract(video_fpath,  audio_fpath)
@@ -48,8 +48,6 @@ def single_run(base_dir, fname):
 
 
 if __name__ == '__main__':
-    # base_dir = "data"
-    # fname = "NHK_news_ja.mp4"
-    base_dir = "/Users/fazuo/Downloads/tmp/FA/FAX-190"
-    fname = "FAX-190.mp4"
+    base_dir = "data"
+    fname = "NHK_news_ja.mp4"
     single_run(base_dir, fname)
