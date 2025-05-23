@@ -1,5 +1,5 @@
-translate
-pyyaml
-openai-whisper
-ffmpeg-python
-torch
+translate==3.6.1
+pyyaml==6.0.2
+openai-whisper==20231117
+ffmpeg-python==0.2.0
+torch==2.2.2
