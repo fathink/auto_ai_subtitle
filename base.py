@@ -4,7 +4,7 @@ import subprocess
 from script import translate_tool, audio_tool, whisper_tool
 
 # 基础设置
-whisper_model = "small"  # 可选:  base, small, medium, turbo
+whisper_model = "medium"  # 可选:  base, small, medium, turbo
 
 # 设置视频源语言和目标语言， en:英语，zh:中文，ja:日语，ko:韩语
 language_from = "ja"  # 源语言
@@ -25,7 +25,7 @@ def single_run(base_dir, fname):
     print("audio extract success")
 
     # step2: 采用whisper实现ASR，生成字幕格式文件
-    whisper_tool.do_whisper(audio_fpath, srt_fpath, "zh", model=whisper_model)
+    whisper_tool.do_whisper(audio_fpath, srt_fpath, language_from, model=whisper_model)
     print("whisper success")
 
     # step3: 翻译字幕文件
@@ -48,6 +48,8 @@ def single_run(base_dir, fname):
 
 
 if __name__ == '__main__':
-    base_dir = "data"
-    fname = "NHK_news_ja.mp4"
+    # base_dir = "data"
+    # fname = "NHK_news_ja.mp4"
+    base_dir = "/Users/fazuo/Downloads/tmp/FA/FAX-190"
+    fname = "FAX-190.mp4"
     single_run(base_dir, fname)
