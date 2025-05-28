@@ -71,7 +71,7 @@ def get_split_lines(i, lines, n, thread_nums):
     return split_line
 
 
-def do_translate(file1, file2, form, to, thread_nums):
+def do_translate(file1, file2, form, to, thread_nums=10):
     translator = Translator(from_lang=form, to_lang=to)
     translate_file(__translate, file1, file2, thread_nums, translator)
 

@@ -4,7 +4,7 @@ import subprocess
 from script import translate_tool, audio_tool, whisper_tool
 
 # 基础设置
-whisper_model = "medium"  # 可选:  base, small, medium, turbo
+whisper_model = "turbo"  # 可选:  base, small, medium, turbo
 
 # 设置视频源语言和目标语言， en:英语，zh:中文，ja:日语，ko:韩语
 language_from = "ja"  # 源语言
@@ -35,6 +35,7 @@ def single_run(base_dir, fname):
     # step4: 字幕文件添加到视频中
     comand = [
         "ffmpeg",
+        '-y',            # 覆盖输出文件
         "-i", video_fpath,
         "-i", srt_translate_fpath,
         "-c:v", "copy",  # 直接复制视频流（不重新编码）
@@ -50,4 +51,5 @@ def single_run(base_dir, fname):
 if __name__ == '__main__':
     base_dir = "data"
     fname = "NHK_news_ja.mp4"
+
     single_run(base_dir, fname)
